@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 50)->unique();
             $table->string('year', 4)->nullable();
-            $table->url('cover')->nullable();
+            $table->string('cover')->nullable();
             $table->text('description')->nullable();
             $table->softDeletes();
             $table->timestamps();

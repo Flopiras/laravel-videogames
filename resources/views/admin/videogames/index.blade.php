@@ -27,7 +27,7 @@
             {{-- show --}}
             <a href="#" class="btn btn-primary">Show</a>
             {{-- edit --}}
-            <a href="#" class="btn btn-warning">Edit</a>
+            <a href="{{route('admin.videogames.edit', $videogame)}}" class="btn btn-warning">Edit</a>
             {{-- delete --}}
             <form action="">
                 <button class="btn btn-danger">Delete</button>

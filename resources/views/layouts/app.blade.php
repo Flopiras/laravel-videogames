@@ -19,7 +19,7 @@
     @yield('cdns')
 
     <!-- Usando Vite -->
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/js/toasts.js'])
 </head>
 
 <body>
@@ -37,6 +37,9 @@
             </div>
         </main>
     </div>
+
+    {{-- toasts --}}
+    @include('includes.toasts')
 
     {{-- scripts --}}
     @yield('scripts')

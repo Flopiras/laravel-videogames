@@ -47,7 +47,14 @@ class VideogameController extends Controller
 
         return to_route('admin.videogames.index')
             ->with('alert-type', 'success')
-            ->with('alert-message', "$videogame->title created successfully.");
+            ->with('alert-message', "$videogame->title created successfully.")
+            ->with('toast', [
+                'owner' => 'System',
+                'message' => 'Created Successfully',
+                'timestamp' => now(),
+                'action' => 'go_to_list',
+                'action-route' => route('admin.videogames.show', $videogame)
+            ]);
     }
 
     /**
@@ -82,8 +89,15 @@ class VideogameController extends Controller
 
         $data = $request->all();
         $videogame->update($data);
-
-        return to_route('admin.videogames.show', compact('videogame'))->with('alert-type', 'success')->with('alert-message', "$videogame->title updated successfully.");
+        return to_route('admin.videogames.show')
+            ->with('alert-type', 'success')
+            ->with('alert-message', "$videogame->title updated successfully.")
+            ->with('toast', [
+                'owner' => 'System',
+                'message' => 'Updated Successfully',
+                'timestamp' => now(),
+                'action' => ''
+            ]);
     }
 
     /**
@@ -95,7 +109,14 @@ class VideogameController extends Controller
 
         return to_route('admin.videogames.index')
             ->with('alert-type', 'success')
-            ->with('alert-message', "$videogame->title deleted successfully.");
+            ->with('alert-message', "$videogame->title deleted successfully.")
+            ->with('toast', [
+                'owner' => 'System',
+                'message' => 'Deleted Successfully',
+                'timestamp' => now(),
+                'action' => 'restore',
+                'action-route' => route('admin.videogames.restore', $videogame)
+            ]);
     }
 
     public function trash()

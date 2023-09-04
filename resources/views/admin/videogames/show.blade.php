@@ -15,10 +15,14 @@
                         <p class="card-text">{{ $videogame->description }}</p>
                         <p class="card-text text-body-secondary">Created at: {{ $videogame->created_at }}</p>
                         <p class="card-text text-body-secondary">Updated at: {{ $videogame->updated_at }}</p>
-                        <div class="buttons">
+                        <div class="buttons d-flex gap-1">
                             <a class="btn btn-primary" href="{{ route('admin.videogames.index') }}">Back</a>
-                            <a class="btn btn-warning" href="#">Edit</a>
-                            <a class="btn btn-danger" href="#">Delete</a>
+                            <a class="btn btn-warning" href="{{ route('admin.videogames.edit', $videogame) }}">Edit</a>
+                            <form action="{{ route('admin.videogames.destroy', $videogame) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
                         </div>
                     </div>
                 </div>

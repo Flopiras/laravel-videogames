@@ -89,7 +89,7 @@ class VideogameController extends Controller
 
         $data = $request->all();
         $videogame->update($data);
-        return to_route('admin.videogames.show')
+        return to_route('admin.videogames.show', $videogame)
             ->with('alert-type', 'success')
             ->with('alert-message', "$videogame->title updated successfully.")
             ->with('toast', [

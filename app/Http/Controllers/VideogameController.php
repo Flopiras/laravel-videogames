@@ -45,7 +45,9 @@ class VideogameController extends Controller
         $videogame->fill($data);
         $videogame->save();
 
-        return to_route('admin.videogames.index');
+        return to_route('admin.videogames.index')
+            ->with('alert-type', 'success')
+            ->with('alert-message', "$videogame->title created successfully.");
     }
 
     /**
@@ -80,7 +82,8 @@ class VideogameController extends Controller
 
         $data = $request->all();
         $videogame->update($data);
-        return to_route('admin.videogames.show', compact('videogame'));
+
+        return to_route('admin.videogames.show', compact('videogame'))->with('alert-type', 'success')->with('alert-message', "$videogame->title updated successfully.");
     }
 
     /**
@@ -90,6 +93,8 @@ class VideogameController extends Controller
     {
         $videogame->delete();
 
-        return to_route('admin.videogames.index');
+        return to_route('admin.videogames.index')
+            ->with('alert-type', 'success')
+            ->with('alert-message', "$videogame->title deleted successfully.");
     }
 }

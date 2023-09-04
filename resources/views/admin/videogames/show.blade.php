@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('includes.modal')
     <div class="d-flex justify-content-center mt-5">
         <div class="card mb-3">
             <div class="row g-0">
@@ -15,10 +16,13 @@
                         <p class="card-text">{{ $videogame->description }}</p>
                         <p class="card-text text-body-secondary">Created at: {{ $videogame->created_at }}</p>
                         <p class="card-text text-body-secondary">Updated at: {{ $videogame->updated_at }}</p>
-                        <div class="buttons">
+                        <div class="buttons d-flex gap-1">
                             <a class="btn btn-primary" href="{{ route('admin.videogames.index') }}">Back</a>
-                            <a class="btn btn-warning" href="#">Edit</a>
-                            <a class="btn btn-danger" href="#">Delete</a>
+                            <a class="btn btn-warning" href="{{ route('admin.videogames.edit', $videogame) }}">Edit</a>
+                            <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal"
+                                data-bs-target="#{{ $videogame->id }}">
+                                Delete
+                            </button>
                         </div>
                     </div>
                 </div>

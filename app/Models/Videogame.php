@@ -9,5 +9,5 @@ class Videogame extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'year', 'cover', 'description'];
+    protected $fillable = ['title', 'description', 'year', 'cover'];
 }

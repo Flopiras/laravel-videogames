@@ -2,7 +2,12 @@
 
 @section('content')
 
-<table class="table">
+{{-- create --}}
+<div class="d-flex justify-content-end my-4">
+    <a href="" class="btn btn-success">Create new Videogame</a>
+</div>
+
+<table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -24,14 +29,17 @@
           <td>{{ $videogame->updated_at }}</td>
           {{-- buttons --}}
           <td>
-            {{-- show --}}
-            <a href="#" class="btn btn-primary">Show</a>
-            {{-- edit --}}
-            <a href="#" class="btn btn-warning">Edit</a>
-            {{-- delete --}}
-            <form action="">
-                <button class="btn btn-danger">Delete</button>
-            </form>
+            <div class="d-flex justify-content-between">
+
+                {{-- show --}}
+                <a href="#" class="btn btn-primary">Show</a>
+                {{-- edit --}}
+                <a href="#" class="btn btn-warning">Edit</a>
+                {{-- delete --}}
+                <form action="">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
           </td>
         </tr>
         @empty

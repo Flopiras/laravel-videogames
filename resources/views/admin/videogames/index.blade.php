@@ -32,7 +32,7 @@
                             {{-- show --}}
                              <a href="{{ route('admin.videogames.show', $videogame) }}" class="btn btn-primary">Show</a>
                             {{-- edit --}}
-                            <a href="#" class="btn btn-warning">Edit</a>
+                            <a href="{{route('admin.videogames.edit', $videogame)}}" class="btn btn-warning">Edit</a>
 
                             {{-- delete --}}
                             <form action="{{ route('admin.videogames.destroy', $videogame) }}" method="POST">

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     {{-- create --}}
     <div class="d-flex justify-content-end my-4">
         <a href="" class="btn btn-success">Create new Videogame</a>
@@ -29,7 +30,7 @@
                     <td>
                         <div class="d-flex justify-content-between">
                             {{-- show --}}
-                            <a href="#" class="btn btn-primary">Show</a>
+                             <a href="{{ route('admin.videogames.show', $videogame) }}" class="btn btn-primary">Show</a>
                             {{-- edit --}}
                             <a href="#" class="btn btn-warning">Edit</a>
 

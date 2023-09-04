@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <table class="table">
+    {{-- create --}}
+    <div class="d-flex justify-content-end my-4">
+        <a href="" class="btn btn-success">Create new Videogame</a>
+    </div>
+
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -22,27 +27,28 @@
                     <td>{{ $videogame->updated_at }}</td>
                     {{-- buttons --}}
                     <td>
-                        {{-- show --}}
-                        <a href="#" class="btn btn-primary">Show</a>
-                        {{-- edit --}}
-                        <a href="#" class="btn btn-warning">Edit</a>
-                        {{-- delete --}}
-                        <form action="{{ route('admin.videogames.destroy', $videogame) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger">Delete</button>
-                        </form>
+                        <div class="d-flex justify-content-between">
+                            {{-- show --}}
+                            <a href="#" class="btn btn-primary">Show</a>
+                            {{-- edit --}}
+                            <a href="#" class="btn btn-warning">Edit</a>
+
+                            {{-- delete --}}
+                            <form action="{{ route('admin.videogames.destroy', $videogame) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @empty
                 <tr>
                     <td colspan="6">
                         <h3>Sorry, there are not videogames!</h3>
-
                     </td>
                 </tr>
             @endforelse
-
         </tbody>
     </table>
 @endsection

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('includes.modal')
     <div class="d-flex justify-content-center mt-5">
         <div class="card mb-3">
             <div class="row g-0">
@@ -18,11 +19,10 @@
                         <div class="buttons d-flex gap-1">
                             <a class="btn btn-primary" href="{{ route('admin.videogames.index') }}">Back</a>
                             <a class="btn btn-warning" href="{{ route('admin.videogames.edit', $videogame) }}">Edit</a>
-                            <form action="{{ route('admin.videogames.destroy', $videogame) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger">Delete</button>
-                            </form>
+                            <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal"
+                                data-bs-target="#{{ $videogame->id }}">
+                                Delete
+                            </button>
                         </div>
                     </div>
                 </div>

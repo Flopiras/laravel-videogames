@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Guest\GuestHomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VideogameController;
+use App\Models\Videogame;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,9 @@ Route::get('/', [GuestHomeController::class, 'index'])->name('guest.home');
 Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
 
     Route::get('/', [AdminHomeController::class, 'index'])->name('home');
+    Route::get('/videogames/trash', [VideogameController::class, 'trash'])->name('videogames.trash'); //rotta per il cestino
+    Route::delete('/videogames/trash/{videogame}/drop', [VideogameController::class, 'drop'])->name('videogames.drop'); //rotta per il cestino
+    Route::patch('/videogames/trash/{videogame}/restore', [VideogameController::class, 'restore'])->name('videogames.restore'); //rotta per il restore
     Route::resource('/videogames', VideogameController::class);
 });
 

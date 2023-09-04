@@ -2,10 +2,12 @@
 
 @section('content')
 
-    {{-- create --}}
-    <div class="d-flex justify-content-end my-4">
-        <a href="{{ route('admin.videogames.create')}}" class="btn btn-success">Create new Videogame</a>
-    </div>
+<div class="d-flex justify-content-end my-4">
+        {{-- create --}}
+        <a href="{{ route('admin.videogames.create')}}" class="btn btn-success me-4">Create new Videogame</a>
+        {{-- trash --}}
+        <a href="{{ route('admin.videogames.trash')}}" class="btn btn-danger">Trash</a>
+</div>
 
     <table class="table table-striped">
         <thead>
@@ -20,6 +22,7 @@
         </thead>
         <tbody>
             @forelse($videogames as $videogame)
+                @include('includes.modal')
                 <tr>
                     <th scope="row">{{ $videogame->id }}</th>
                     <td>{{ $videogame->title }}</td>
@@ -30,16 +33,15 @@
                     <td>
                         <div class="d-flex justify-content-between">
                             {{-- show --}}
-                             <a href="{{ route('admin.videogames.show', $videogame) }}" class="btn btn-primary">Show</a>
+                            <a href="{{ route('admin.videogames.show', $videogame) }}" class="btn btn-primary">Show</a>
                             {{-- edit --}}
-                            <a href="{{route('admin.videogames.edit', $videogame)}}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('admin.videogames.edit', $videogame) }}" class="btn btn-warning">Edit</a>
 
                             {{-- delete --}}
-                            <form action="{{ route('admin.videogames.destroy', $videogame) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger">Delete</button>
-                            </form>
+                            <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal"
+                                data-bs-target="#{{ $videogame->id }}">
+                                Delete
+                            </button>
                         </div>
                     </td>
                 </tr>

@@ -22,7 +22,8 @@ class VideogameController extends Controller
      */
     public function create()
     {
-        return view('admin.videogames.create');
+        $videogame = new Videogame();
+        return view('admin.videogames.create', compact('videogame'));
     }
 
     /**
@@ -30,6 +31,15 @@ class VideogameController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'title' => 'required|string|max:50',
+                'description' => 'nullable|string',
+                'year' => 'nullable|numeric',
+                'cover' => 'nullable|url'
+            ]
+        );
+
         $data = $request->all();
         $videogame = new Videogame();
         $videogame->fill($data);
@@ -68,9 +78,18 @@ class VideogameController extends Controller
      */
     public function update(Request $request, Videogame $videogame)
     {
+        $request->validate(
+            [
+                'title' => 'required|string|max:50',
+                'description' => 'nullable|string',
+                'year' => 'nullable|numeric',
+                'cover' => 'nullable|url'
+            ]
+        );
+
         $data = $request->all();
         $videogame->update($data);
-        return to_route('admin.videogames.index')
+        return to_route('admin.videogames.show')
             ->with('alert-type', 'success')
             ->with('alert-message', "$videogame->title updated successfully.")
             ->with('toast', [
@@ -98,5 +117,30 @@ class VideogameController extends Controller
                 'action' => 'restore',
                 'action-route' => route('admin.videogames.restore', $videogame)
             ]);
+    }
+
+    public function trash()
+    {
+        $videogames = Videogame::onlyTrashed()->get();
+        return view('admin.videogames.trash', compact('videogames'));
+    }
+
+    /**
+     * Restore trashed videogames
+     */
+    public function restore(string $id)
+    {
+        $videogame = Videogame::onlyTrashed()->findOrFail($id);
+        $videogame->restore();
+        return to_route('admin.videogames.show', compact('videogame'));
+    }
+
+    public function drop(string $id)
+    {
+
+        $videogame = Videogame::onlyTrashed()->findOrFail($id);
+        $videogame->forceDelete();
+
+        return to_route('admin.videogames.trash');
     }
 }

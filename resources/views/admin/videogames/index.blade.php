@@ -4,7 +4,7 @@
 
     {{-- create --}}
     <div class="d-flex justify-content-end my-4">
-        <a href="" class="btn btn-success">Create new Videogame</a>
+        <a href="{{ route('admin.videogames.create')}}" class="btn btn-success">Create new Videogame</a>
     </div>
 
     <table class="table table-striped">

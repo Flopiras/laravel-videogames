@@ -22,7 +22,8 @@ class VideogameController extends Controller
      */
     public function create()
     {
-        return view('admin.videogames.create');
+        $videogame = new Videogame();
+        return view('admin.videogames.create', compact('videogame'));
     }
 
     /**
@@ -30,6 +31,15 @@ class VideogameController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'title' => 'required|string|max:50',
+                'description' => 'nullable|string',
+                'year' => 'nullable|numeric',
+                'cover' => 'nullable|url'
+            ]
+        );
+
         $data = $request->all();
         $videogame = new Videogame();
         $videogame->fill($data);
@@ -61,11 +71,19 @@ class VideogameController extends Controller
      */
     public function update(Request $request, Videogame $videogame)
     {
+        $request->validate(
+            [
+                'title' => 'required|string|max:50',
+                'description' => 'nullable|string',
+                'year' => 'nullable|numeric',
+                'cover' => 'nullable|url'
+            ]
+        );
+
         $data = $request->all();
         $videogame->update($data);
-        return to_route('admin.videogames.index')
-            ->with('alert-type', 'success')
-            ->with('alert-message', "$videogame->title updated successfully.");
+
+        return to_route('admin.videogames.show', compact('videogame'))->with('alert-type', 'success')->with('alert-message', "$videogame->title updated successfully.");
     }
 
     /**

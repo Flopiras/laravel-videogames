@@ -27,6 +27,9 @@
 
         <main class="">
             <div class="container">
+                {{-- alerts --}}
+                @include('includes.alerts')
+
                 @yield('content')
             </div>
         </main>

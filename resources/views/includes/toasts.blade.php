@@ -20,7 +20,9 @@
                 {{-- Restore Action --}}
                 @if (session('toast')['action'] === 'restore')
                     <div class="mt-2 pt-2 border-top">
-                        <form action="{{ session('toast')['action-route'] }}">
+                        <form action="{{ session('toast')['action-route'] }}" method="POST">
+                            @csrf
+                            @method('PATCH')
                             <button class="btn btn-success">Restore</button>
                         </form>
                     </div>

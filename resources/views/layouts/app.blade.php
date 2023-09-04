@@ -46,6 +46,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
                         </li>
+
+                        {{-- videogames --}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.videogames.index') }}">Videogames</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -86,7 +91,9 @@
         </nav>
 
         <main class="">
-            @yield('content')
+            <div class="container">
+                @yield('content')
+            </div>
         </main>
     </div>
 </body>

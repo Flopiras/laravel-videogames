@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Guest\GuestHomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VideogameController;
 use Illuminate\Support\Facades\Route;
 
 /*

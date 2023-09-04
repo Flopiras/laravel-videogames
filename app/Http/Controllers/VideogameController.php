@@ -73,4 +73,29 @@ class VideogameController extends Controller
 
         return to_route('admin.videogames.index');
     }
+
+    public function trash()
+    {
+        $videogames = Videogame::onlyTrashed()->get();
+        return view('admin.videogames.trash', compact('videogames'));
+    }
+
+    /**
+     * Restore trashed videogames
+     */
+    public function restore(string $id)
+    {
+        $videogame = Videogame::onlyTrashed()->findOrFail($id);
+        $videogame->restore();
+        return to_route('admin.videogames.show', compact('videogame'));
+    }
+
+    public function drop(string $id)
+    {
+
+        $videogame = Videogame::onlyTrashed()->findOrFail($id);
+        $videogame->forceDelete();
+
+        return to_route('admin.videogames.trash');
+    }
 }

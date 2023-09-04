@@ -2,9 +2,12 @@
 
 @section('content')
 
-    {{-- create --}}
-    <div class="d-flex justify-content-end my-4">
-        <a href="{{ route('admin.videogames.create')}}" class="btn btn-success">Create new Videogame</a>
+<div class="d-flex justify-content-end my-4">
+        {{-- create --}}
+        <a href="{{ route('admin.videogames.create')}}" class="btn btn-success me-4">Create new Videogame</a>
+        {{-- trash --}}
+        <a href="{{ route('admin.videogames.trash')}}" class="btn btn-danger">Trash</a>
+
     </div>
 
     <table class="table table-striped">

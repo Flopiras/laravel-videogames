@@ -23,12 +23,19 @@ class VideogameSeeder extends Seeder
             $videogame = new Videogame();
 
             $videogame->title = $faker->sentence(3);
-            $videogame->console_id = Arr::random($console_ids);
             $videogame->year = $faker->year();
             $videogame->cover = $faker->imageUrl();
             $videogame->description = $faker->paragraphs(10, true);
 
             $videogame->save();
+
+            // Generate random tecnologies
+            $videogame_consoles = [];
+            foreach ($console_ids as $console_id) {
+                if (rand(0, 1)) $videogame_consoles[] = $console_id;
+            }
+
+            $videogame->consoles()->attach($videogame_consoles);
         }
     }
 }

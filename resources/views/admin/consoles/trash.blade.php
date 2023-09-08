@@ -15,7 +15,7 @@
             @forelse($consoles as $console)
                 <tr>
                     <th scope="row">{{ $console->id }}</th>
-                    <td>{{ $console->label }}</td>
+                    <td>{{ $console->name }}</td>
                     <td>{{ $console->deleted_at }}</td>
                     <td>
                         <div class="d-flex justify-content-end">

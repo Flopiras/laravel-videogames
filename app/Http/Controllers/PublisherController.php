@@ -12,7 +12,8 @@ class PublisherController extends Controller
      */
     public function index()
     {
-        //
+        $publishers = Publisher::all();
+        return view('admin.publishers.index', compact('publishers'));
     }
 
     /**
@@ -42,7 +43,7 @@ class PublisherController extends Controller
      */
     public function show(Publisher $publisher)
     {
-        //
+        return view('admin.publishers.show', compact('publisher'));
     }
 
     /**
@@ -66,6 +67,42 @@ class PublisherController extends Controller
      */
     public function destroy(Publisher $publisher)
     {
-        //
+        $publisher->delete();
+
+        return to_route('admin.publishers.index')
+            ->with('alert-type', 'success')
+            ->with('alert-message', "$publisher->label deleted successfully.")
+            ->with('toast', [
+                'owner' => 'System',
+                'message' => 'Deleted Successfully',
+                'timestamp' => now(),
+                'action' => 'restore',
+                'action-route' => route('admin.publishers.restore', $publisher)
+            ]);
+    }
+
+    public function trash()
+    {
+        $publishers = Publisher::onlyTrashed()->get();
+        return view('admin.publishers.trash', compact('publishers'));
+    }
+
+    /**
+     * Restore trashed publishers
+     */
+    public function restore(string $id)
+    {
+        $publisher = Publisher::onlyTrashed()->findOrFail($id);
+        $publisher->restore();
+        return to_route('admin.publishers.show', compact('publisher'));
+    }
+
+    public function drop(string $id)
+    {
+
+        $publisher = Publisher::onlyTrashed()->findOrFail($id);
+        $publisher->forceDelete();
+
+        return to_route('admin.publishers.trash');
     }
 }

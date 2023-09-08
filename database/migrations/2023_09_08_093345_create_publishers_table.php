@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('label', 30)->unique();
             $table->char('color', 7)->default('#ffffff');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

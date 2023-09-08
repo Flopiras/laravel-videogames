@@ -12,7 +12,9 @@ class ConsoleController extends Controller
      */
     public function index()
     {
-        //
+        $consoles = Console::all();
+
+        return view('admin.consoles.index', compact('consoles'));
     }
 
     /**
@@ -36,7 +38,7 @@ class ConsoleController extends Controller
      */
     public function show(Console $console)
     {
-        //
+        return view('admin.consoles.show', compact('console'));
     }
 
     /**
@@ -44,7 +46,10 @@ class ConsoleController extends Controller
      */
     public function edit(Console $console)
     {
-        //
+        // Get all color classes
+        $color_classes = config('color_classes');
+
+        return view('admin.consoles.edit', compact('console', 'color_classes'));
     }
 
     /**
@@ -52,7 +57,24 @@ class ConsoleController extends Controller
      */
     public function update(Request $request, Console $console)
     {
-        //
+        $request->validate(
+            [
+                'name' => 'required|string|max:15',
+                'color' => 'required|string|max:15'
+            ]
+        );
+
+        $data = $request->all();
+        $console->update($data);
+
+        return to_route('admin.consoles.show', $console)->with('alert-type', 'success')
+            ->with('alert-message', "$console->label updated successfully.")
+            ->with('toast', [
+                'owner' => 'System',
+                'message' => 'Updated Successfully',
+                'timestamp' => now(),
+                'action' => ''
+            ]);
     }
 
     /**

@@ -10,9 +10,13 @@ class VideogameController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $videogames = Videogame::all();
+        $search_value = $request->title;
+        if ($search_value) {
+            $filtered_videogames = $request->query('title');
+            $videogames = Videogame::where('title', 'LIKE', "%$filtered_videogames%")->get();
+        } else $videogames = Videogame::all();
 
         return view('admin.videogames.index', compact('videogames'));
     }

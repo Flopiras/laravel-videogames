@@ -20,7 +20,7 @@ class PublisherController extends Controller
      */
     public function create()
     {
-        //
+        return to_route('admin.publishers.create');
     }
 
     /**
@@ -28,7 +28,13 @@ class PublisherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $publisher = new Publisher();
+
+        $publisher->fill($data);
+
+        return to_route('admin.publishers.show', compact('publisher'));
     }
 
     /**

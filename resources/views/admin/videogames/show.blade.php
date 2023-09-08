@@ -19,7 +19,7 @@
                         {{-- Consoles --}}
                         <div class="mb-3">
                             @forelse ($videogame->consoles as $console)
-                                <span class="badge bg-{{ $console->color }}">
+                                <span class="badge text-bg-{{ $console->color }}">
 
                                     {{ $console->name }}
                                 </span>
@@ -32,9 +32,9 @@
                         <p class="card-text">
                             <strong>Publisher: </strong>
                             @if ($videogame->publisher)
-                                <span class="badge bg-{{ $videogame->publisher->color }}">
+                                <span class="badge" style="background-color: {{ $videogame->publisher->color }};">
 
-                                    {{ $videogame->publisher->name }}
+                                    {{ $videogame->publisher->label }}
                                 </span>
                             @else
                                 -

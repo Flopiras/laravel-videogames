@@ -36,9 +36,9 @@
                     <td>{{ $videogame->title }}</td>
                     <td>
                         @if ($videogame->publisher)
-                            <span class="badge bg-{{ $videogame->publisher->color }}">
+                            <span class="badge" style="background-color: {{ $videogame->publisher->color }};">
 
-                                {{ $videogame->publisher->name }}
+                                {{ $videogame->publisher->label }}
                             </span>
                         @else
                             -
@@ -46,7 +46,7 @@
                     </td>
                     <td>
                         @forelse ($videogame->consoles as $console)
-                            <span class="badge bg-{{ $console->color }}">
+                            <span class="badge text-bg-{{ $console->color }}">
 
                                 {{ $console->name }}
                             </span>

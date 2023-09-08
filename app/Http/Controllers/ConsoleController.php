@@ -38,7 +38,7 @@ class ConsoleController extends Controller
      */
     public function show(Console $console)
     {
-        //
+        return view('admin.consoles.show', compact('console'));
     }
 
     /**

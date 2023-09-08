@@ -6,6 +6,7 @@ use App\Http\Controllers\Guest\GuestHomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\VideogameController;
+use App\Models\Console;
 use App\Models\Videogame;
 use Illuminate\Support\Facades\Route;
 
@@ -36,8 +37,13 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::delete('/publishers/trash/{publisher}/drop', [PublisherController::class, 'drop'])->name('publishers.drop'); //rotta per il cestino
     Route::patch('/publishers/trash/{publisher}/restore', [PublisherController::class, 'restore'])->name('publishers.restore'); //rotta per il restore
 
+
+    Route::get('/consoles/trash', [ConsoleController::class, 'trash'])->name('consoles.trash'); //rotta per il cestino
     // Console routes
     Route::resource('/consoles', ConsoleController::class);
+    Route::delete('/consoles/trash/{console}/drop', [ConsoleController::class, 'drop'])->name('consoles.drop'); //rotta per il cestino
+    Route::patch('/consoles/trash/{console}/restore', [ConsoleController::class, 'restore'])->name('consoles.restore'); //rotta per il restore
+
 });
 
 Route::middleware('auth')->group(function () {

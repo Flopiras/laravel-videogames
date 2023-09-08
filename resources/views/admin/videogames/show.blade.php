@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('includes.modal')
+    @include('includes.videogames.modal')
     <div class="d-flex justify-content-center mt-5">
         <div class="card mb-3">
             <div class="row g-0">

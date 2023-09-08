@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('includes.consoles.modal')
     <div class="d-flex justify-content-center mt-5">
         <div class="card mb-3">
             <div class="card-body">

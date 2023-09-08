@@ -69,7 +69,7 @@ class PublisherController extends Controller
     {
         $publisher->delete();
 
-        return to_route('admin.publisher.index')
+        return to_route('admin.publishers.index')
             ->with('alert-type', 'success')
             ->with('alert-message', "$publisher->label deleted successfully.")
             ->with('toast', [

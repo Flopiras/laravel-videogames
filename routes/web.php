@@ -31,7 +31,10 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::resource('/videogames', VideogameController::class);
 
     // Publisher routes
+    Route::get('/publishers/trash', [PublisherController::class, 'trash'])->name('publishers.trash'); //rotta per il cestino
     Route::resource('/publishers', PublisherController::class);
+    Route::delete('/publishers/trash/{publisher}/drop', [PublisherController::class, 'drop'])->name('publishers.drop'); //rotta per il cestino
+    Route::patch('/publishers/trash/{publisher}/restore', [PublisherController::class, 'restore'])->name('publishers.restore'); //rotta per il restore
 
     // Console routes
     Route::resource('/consoles', ConsoleController::class);

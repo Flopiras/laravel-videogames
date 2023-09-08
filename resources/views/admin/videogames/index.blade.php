@@ -20,6 +20,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
+                <th scope="col">Publisher</th>
+                <th scope="col">Consoles</th>
                 <th scope="col">Year</th>
                 <th scope="col">Created at</th>
                 <th scope="col">Updated at</th>
@@ -32,7 +34,20 @@
                 <tr>
                     <th scope="row">{{ $videogame->id }}</th>
                     <td>{{ $videogame->title }}</td>
+                    <td>{{ $videogame->publisher ?? '-' }}</td>
+                    <td>
+                        @forelse ($videogame->consoles as $console)
+                            <span class="badge bg-{{ $console->color }}">
+
+                                {{ $console->name }}
+                            </span>
+                        @empty
+                            -
+                        @endforelse
+
+                    </td>
                     <td>{{ $videogame->year }}</td>
+
                     <td>{{ $videogame->created_at }}</td>
                     <td>{{ $videogame->updated_at }}</td>
                     {{-- buttons --}}
@@ -53,7 +68,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6">
+                    <td colspan="8">
                         <h3>Sorry, there are not videogames!</h3>
                     </td>
                 </tr>

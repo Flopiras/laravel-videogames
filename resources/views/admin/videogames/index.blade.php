@@ -32,7 +32,7 @@
         </thead>
         <tbody>
             @forelse($videogames as $videogame)
-                @include('includes.modal')
+                @include('includes.videogames.modal')
                 <tr>
                     <th scope="row">{{ $videogame->id }}</th>
                     <td>{{ $videogame->title }}</td>

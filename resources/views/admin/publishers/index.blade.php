@@ -29,6 +29,7 @@
         </thead>
         <tbody>
             @forelse($publishers as $publisher)
+                @include('includes.publishers.modal')
                 <tr>
                     <th scope="row">{{ $publisher->id }}</th>
                     <td>{{ $publisher->label }}</td>
@@ -43,11 +44,10 @@
                             <a href="{{ route('admin.publishers.edit', $publisher) }}" class="btn btn-warning">Edit</a>
 
                             {{-- delete --}}
-                            <form action="{{ route('admin.publishers.destroy', $publisher) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger ms-2">Delete</button>
-                            </form>
+                            <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal"
+                                data-bs-target="#{{ $publisher->id }}">
+                                Delete
+                            </button>
                         </div>
                     </td>
                 </tr>

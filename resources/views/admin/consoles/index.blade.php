@@ -23,6 +23,7 @@
         </thead>
         <tbody>
             @forelse($consoles as $console)
+                @include('includes.consoles.modal')
                 <tr>
                     <th scope="row">{{ $console->id }}</th>
                     <td>{{ $console->name }}</td>
@@ -36,11 +37,10 @@
                             <a href="{{ route('admin.consoles.edit', $console) }}" class="btn btn-warning">Edit</a>
 
                             {{-- delete --}}
-                            <form action="{{ route('admin.consoles.destroy', $console) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger ms-2">Delete</button>
-                            </form>
+                            <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal"
+                                data-bs-target="#{{ $console->id }}">
+                                Delete
+                            </button>
                         </div>
                     </td>
                 </tr>

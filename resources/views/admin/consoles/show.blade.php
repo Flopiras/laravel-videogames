@@ -9,7 +9,7 @@
 
                 <div class="buttons d-flex gap-1">
                     <a class="btn btn-primary" href="{{ route('admin.consoles.index') }}">Back</a>
-                    <a class="btn btn-warning" href="#">Edit</a>
+                    <a class="btn btn-warning" href="{{ route('admin.consoles.edit', $console) }}">Edit</a>
                     <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal"
                         data-bs-target="#{{ $console->id }}">
                         Delete

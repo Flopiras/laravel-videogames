@@ -65,7 +65,8 @@
                             {{-- show --}}
                             <a href="{{ route('admin.videogames.show', $videogame) }}" class="btn btn-primary">Show</a>
                             {{-- edit --}}
-                            <a href="{{ route('admin.videogames.edit', $videogame) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('admin.videogames.edit', $videogame) }}"
+                                class="btn btn-warning ms-2">Edit</a>
 
                             {{-- delete --}}
                             <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal"

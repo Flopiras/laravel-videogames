@@ -1,13 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="d-flex justify-content-end my-4">
 
-<div class="d-flex justify-content-end my-4">
+        {{-- search bar  --}}
+        <form action="{{ route('admin.videogames.index') }}" method="GET" class="d-flex me-4" role="search">
+            <input class="form-control me-2" type="search" name="title" placeholder="Search" aria-label="Search"
+                value="{{ $search_value ?? '' }}">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
         {{-- create --}}
-        <a href="{{ route('admin.videogames.create')}}" class="btn btn-success me-4">Create new Videogame</a>
+        <a href="{{ route('admin.videogames.create') }}" class="btn btn-success me-4">Create new Videogame</a>
         {{-- trash --}}
-        <a href="{{ route('admin.videogames.trash')}}" class="btn btn-danger">Trash</a>
-</div>
+        <a href="{{ route('admin.videogames.trash') }}" class="btn btn-danger">Trash</a>
+    </div>
 
     <table class="table table-striped">
         <thead>

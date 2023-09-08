@@ -20,6 +20,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
+                <th scope="col">Publisher</th>
+                <th scope="col">Consoles</th>
                 <th scope="col">Year</th>
                 <th scope="col">Created at</th>
                 <th scope="col">Updated at</th>
@@ -32,7 +34,29 @@
                 <tr>
                     <th scope="row">{{ $videogame->id }}</th>
                     <td>{{ $videogame->title }}</td>
+                    <td>
+                        @if ($videogame->publisher)
+                            <span class="badge" style="background-color: {{ $videogame->publisher->color }};">
+
+                                {{ $videogame->publisher->label }}
+                            </span>
+                        @else
+                            -
+                        @endif
+                    </td>
+                    <td>
+                        @forelse ($videogame->consoles as $console)
+                            <span class="badge text-bg-{{ $console->color }}">
+
+                                {{ $console->name }}
+                            </span>
+                        @empty
+                            -
+                        @endforelse
+
+                    </td>
                     <td>{{ $videogame->year }}</td>
+
                     <td>{{ $videogame->created_at }}</td>
                     <td>{{ $videogame->updated_at }}</td>
                     {{-- buttons --}}
@@ -41,7 +65,8 @@
                             {{-- show --}}
                             <a href="{{ route('admin.videogames.show', $videogame) }}" class="btn btn-primary">Show</a>
                             {{-- edit --}}
-                            <a href="{{ route('admin.videogames.edit', $videogame) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('admin.videogames.edit', $videogame) }}"
+                                class="btn btn-warning ms-2">Edit</a>
 
                             {{-- delete --}}
                             <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal"
@@ -53,7 +78,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6">
+                    <td colspan="8">
                         <h3>Sorry, there are not videogames!</h3>
                     </td>
                 </tr>

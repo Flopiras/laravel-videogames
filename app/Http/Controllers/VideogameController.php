@@ -76,7 +76,8 @@ class VideogameController extends Controller
      */
     public function edit(Videogame $videogame)
     {
-        return view('admin.videogames.edit', compact('videogame'));
+        $publishers = Publisher::all();
+        return view('admin.videogames.edit', compact('videogame', 'publishers'));
     }
 
     /**

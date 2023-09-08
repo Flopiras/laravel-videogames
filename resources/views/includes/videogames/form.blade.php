@@ -54,13 +54,16 @@
     </div>
 
     {{-- Publisher --}}
+    {{-- <option @if (old('type_id', $project->type_id) == $type->id) selected @endif value={{ $type->id }}>
+        {{ $type->name }}</option> --}}
     <div class="col-6">
         <div class="mb-3">
             <label for="publisher" class="form-label">Publisher</label>
             <select class="form-select" name="publisher_id" id="publisher">
                 <option value="">None publisher</option>
                 @foreach ($publishers as $publisher)
-                    <option value="{{ $publisher->id }}">{{ $publisher->label }}</option>
+                    <option @if (old('publisher_id', $videogame->publisher_id) == $publisher->id) selected @endif value="{{ $publisher->id }}">
+                        {{ $publisher->label }}</option>
                 @endforeach
             </select>
             @error('publisher')

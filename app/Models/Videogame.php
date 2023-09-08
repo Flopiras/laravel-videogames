@@ -11,7 +11,7 @@ class Videogame extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['title', 'description', 'year', 'cover'];
+    protected $fillable = ['title', 'description', 'year', 'cover', 'publisher_id'];
 
     /**
      * Consoles relation

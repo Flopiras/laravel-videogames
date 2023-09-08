@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Videogames')
+
 @section('content')
     <div class="d-flex justify-content-end my-4">
 

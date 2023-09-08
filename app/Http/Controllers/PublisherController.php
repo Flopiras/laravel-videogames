@@ -33,6 +33,7 @@ class PublisherController extends Controller
         $publisher = new Publisher();
 
         $publisher->fill($data);
+        $publisher->save();
 
         return to_route('admin.publishers.show', compact('publisher'));
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\ConsoleController;
 use App\Http\Controllers\Guest\GuestHomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VideogameController;
@@ -27,6 +28,9 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::delete('/videogames/trash/{videogame}/drop', [VideogameController::class, 'drop'])->name('videogames.drop'); //rotta per il cestino
     Route::patch('/videogames/trash/{videogame}/restore', [VideogameController::class, 'restore'])->name('videogames.restore'); //rotta per il restore
     Route::resource('/videogames', VideogameController::class);
+
+    // Console routes
+    Route::resource('/consoles', ConsoleController::class);
 });
 
 Route::middleware('auth')->group(function () {

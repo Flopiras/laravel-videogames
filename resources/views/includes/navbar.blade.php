@@ -22,10 +22,19 @@
                     <a class="nav-link  @if (request()->routeIs('admin.videogames*')) active @endif"
                         href="{{ route('admin.videogames.index') }}">Videogames</a>
                 </li>
+
                 {{-- publishers --}}
                 <li class="nav-item">
                     <a class="nav-link  @if (request()->routeIs('admin.publishers*')) active @endif"
                         href="{{ route('admin.publishers.index') }}">Publishers</a>
+
+                </li>
+
+                {{-- consoles --}}
+                <li class="nav-item">
+                    <a class="nav-link  @if (request()->routeIs('admin.consoles*')) active @endif"
+                        href="{{ route('admin.consoles.index') }}">Consoles</a>
+
                 </li>
             </ul>
 

@@ -74,6 +74,25 @@
         </div>
     </div>
 
+    {{-- console --}}
+    <div class="col-6">
+        <div class="mb-3">
+            <label for="console" class="form-label">Consoles</label>
+            <select class="form-select" name="console_id" id="console">
+                <option value="">None console</option>
+                @foreach ($consoles as $console)
+                    <option @if (old('console_id', $videogame->console_id) == $console->id) selected @endif value="{{ $console->id }}">
+                        {{ $console->name }}</option>
+                @endforeach
+            </select>
+            @error('console')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+    </div>
+
     {{-- Description --}}
     <div class="col-12">
         <div class="mb-3">

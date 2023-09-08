@@ -10,10 +10,15 @@ class PublisherController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $publishers = Publisher::all();
-        return view('admin.publishers.index', compact('publishers'));
+        $search_value = $request->label;
+        if ($search_value) {
+            $filtered_publishers = $request->query('label');
+            $publishers = Publisher::where('label', 'LIKE', "%$filtered_publishers%")->get();
+        } else $publishers = Publisher::all();
+
+        return view('admin.publishers.index', compact('publishers', 'search_value'));
     }
 
     /**

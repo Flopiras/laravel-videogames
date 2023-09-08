@@ -20,7 +20,7 @@ class VideogameController extends Controller
             $videogames = Videogame::where('title', 'LIKE', "%$filtered_videogames%")->get();
         } else $videogames = Videogame::all();
 
-        return view('admin.videogames.index', compact('videogames'));
+        return view('admin.videogames.index', compact('videogames', 'search_value'));
     }
 
     /**

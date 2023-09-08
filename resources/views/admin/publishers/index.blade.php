@@ -7,7 +7,7 @@
 
         {{-- search bar  --}}
         <form action="{{ route('admin.publishers.index') }}" method="GET" class="d-flex me-4" role="search">
-            <input class="form-control me-2" type="search" name="title" placeholder="Search" aria-label="Search"
+            <input class="form-control me-2" type="search" name="label" placeholder="Search" aria-label="Search"
                 value="{{ $search_value ?? '' }}">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>

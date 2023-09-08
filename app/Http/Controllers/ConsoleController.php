@@ -84,4 +84,32 @@ class ConsoleController extends Controller
     {
         //
     }
+
+    public function trash()
+    {
+        $consoles = Console::onlyTrashed()->get();
+        return view('admin.consoles.trash', compact('consoles'));
+    }
+
+    /**
+     * Restore trashed consoles
+     */
+    public function restore(string $id)
+    {
+        $console = Console::onlyTrashed()->findOrFail($id);
+        $console->restore();
+        return to_route('admin.consoles.show', compact('console'));
+    }
+
+    /**
+     * Force delete for trashed consoles
+     */
+    public function drop(string $id)
+    {
+
+        $console = Console::onlyTrashed()->findOrFail($id);
+        $console->forceDelete();
+
+        return to_route('admin.consoles.trash');
+    }
 }

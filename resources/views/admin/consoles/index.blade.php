@@ -6,7 +6,7 @@
         {{-- create --}}
         <a href="#" class="btn btn-success me-4">Create new Console</a>
         {{-- trash --}}
-        <a href="#" class="btn btn-danger">Trash</a>
+        <a href="{{ route('admin.consoles.trash') }}" class="btn btn-danger">Trash</a>
     </div>
 
     <table class="table table-striped">

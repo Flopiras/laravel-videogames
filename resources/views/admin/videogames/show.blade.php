@@ -30,7 +30,7 @@
 
                         {{-- Publisher --}}
                         <p class="card-text">
-                            <strong>Publisher: </strong>
+                            <small class="text-body-secondary"><strong>Publisher: </strong></small>
                             @if ($videogame->publisher)
                                 <span class="badge" style="background-color: {{ $videogame->publisher->color }};">
 
@@ -42,16 +42,19 @@
                         </p>
 
                         {{-- Year --}}
-                        <p class="card-text"><small class="text-body-secondary">{{ $videogame->year }}</small></p>
+                        <p class="card-text"><small class="text-body-secondary"><strong>Year:
+                                </strong>{{ $videogame->year }}</small></p>
 
                         {{-- Description --}}
                         <p class="card-text">{{ $videogame->description }}</p>
 
                         {{-- Created at --}}
-                        <p class="card-text text-body-secondary">Created at: {{ $videogame->created_at }}</p>
+                        <p class="card-text text-body-secondary"><strong>Created At: </strong>{{ $videogame->created_at }}
+                        </p>
 
                         {{-- Updated at --}}
-                        <p class="card-text text-body-secondary">Updated at: {{ $videogame->updated_at }}</p>
+                        <p class="card-text text-body-secondary"><strong>Updated At: </strong>{{ $videogame->updated_at }}
+                        </p>
 
                         {{-- Actions --}}
                         <div class="buttons d-flex gap-1">

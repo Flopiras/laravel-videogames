@@ -19,10 +19,10 @@ class Videogame extends Model
     public function consoles()
     {
         return $this->belongsToMany(Console::class);
+    }
 
-    public function Publisher()
+    public function publisher()
     {
         return $this->belongsTo(Publisher::class);
-
     }
 }

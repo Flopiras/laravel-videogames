@@ -34,7 +34,16 @@
                 <tr>
                     <th scope="row">{{ $videogame->id }}</th>
                     <td>{{ $videogame->title }}</td>
-                    <td>{{ $videogame->publisher ?? '-' }}</td>
+                    <td>
+                        @if ($videogame->publisher)
+                            <span class="badge bg-{{ $videogame->publisher->color }}">
+
+                                {{ $videogame->publisher->name }}
+                            </span>
+                        @else
+                            -
+                        @endif
+                    </td>
                     <td>
                         @forelse ($videogame->consoles as $console)
                             <span class="badge bg-{{ $console->color }}">

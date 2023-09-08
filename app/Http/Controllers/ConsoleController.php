@@ -12,7 +12,9 @@ class ConsoleController extends Controller
      */
     public function index()
     {
-        //
+        $consoles = Console::all();
+
+        return view('admin.consoles.index', compact('consoles'));
     }
 
     /**

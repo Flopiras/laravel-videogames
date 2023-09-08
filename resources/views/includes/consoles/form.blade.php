@@ -25,7 +25,7 @@
     {{-- Color Field --}}
     <div class="col-4">
         <div class="mb-3">
-            <label for="color" class="form-label">Colore</label>
+            <label for="color" class="form-label">Color</label>
             <select class="form-select @error('color') is-invalid @enderror" name="color" id="color">
                 @foreach ($color_classes as $color_class)
                     <option class="text-bg-{{ $color_class }}" @if ($color_class === old('color', $console->color ?? 'info')) selected @endif>

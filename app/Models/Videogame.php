@@ -12,4 +12,12 @@ class Videogame extends Model
     use SoftDeletes;
 
     protected $fillable = ['title', 'description', 'year', 'cover'];
+
+    /**
+     * Consoles relation
+     */
+    public function consoles()
+    {
+        return $this->belongsToMany(Console::class);
+    }
 }

@@ -13,7 +13,15 @@ class Videogame extends Model
 
     protected $fillable = ['title', 'description', 'year', 'cover'];
 
-    public function Publisher()
+    /**
+     * Consoles relation
+     */
+    public function consoles()
+    {
+        return $this->belongsToMany(Console::class);
+    }
+
+    public function publisher()
     {
         return $this->belongsTo(Publisher::class);
     }

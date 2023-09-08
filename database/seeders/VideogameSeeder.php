@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Console;
 use App\Models\Videogame;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator;
+use Illuminate\Support\Arr;
 
 class VideogameSeeder extends Seeder
 {
@@ -14,6 +16,9 @@ class VideogameSeeder extends Seeder
      */
     public function run(Generator $faker): void
     {
+        // Get all consoles
+        $console_ids = Console::pluck('id')->toArray();
+
         for ($i = 0; $i < 10; $i++) {
             $videogame = new Videogame();
 
@@ -23,6 +28,14 @@ class VideogameSeeder extends Seeder
             $videogame->description = $faker->paragraphs(10, true);
 
             $videogame->save();
+
+            // Generate random tecnologies
+            $videogame_consoles = [];
+            foreach ($console_ids as $console_id) {
+                if (rand(0, 1)) $videogame_consoles[] = $console_id;
+            }
+
+            $videogame->consoles()->attach($videogame_consoles);
         }
     }
 }

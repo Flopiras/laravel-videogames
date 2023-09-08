@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-end my-4">
 
         {{-- create --}}
-        <a href="#" class="btn btn-success me-4">Create new Console</a>
+        <a href="{{ route('admin.consoles.create') }}" class="btn btn-success me-4">Create new Console</a>
         {{-- trash --}}
         <a href="#" class="btn btn-danger">Trash</a>
     </div>

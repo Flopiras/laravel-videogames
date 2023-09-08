@@ -21,7 +21,12 @@ class PublisherController extends Controller
      */
     public function create()
     {
-        return to_route('admin.publishers.create');
+        $publisher = new Publisher();
+
+        // Get all color classes
+        $color_classes = config('color_classes');
+
+        return view('admin.publishers.create', compact('publisher', 'color_classes'));
     }
 
     /**
@@ -52,7 +57,10 @@ class PublisherController extends Controller
      */
     public function edit(Publisher $publisher)
     {
-        return view('admin.publishers.edit', compact('publisher'));
+        // Get all color classes
+        $color_classes = config('color_classes');
+
+        return view('admin.publishers.edit', compact('publisher', 'color_classes'));
     }
 
     /**

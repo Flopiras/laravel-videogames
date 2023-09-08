@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('publishers', function (Blueprint $table) {
             $table->id();
             $table->string('label', 30)->unique();
-            $table->char('color', 7)->default('#ffffff');
+            $table->string('color')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

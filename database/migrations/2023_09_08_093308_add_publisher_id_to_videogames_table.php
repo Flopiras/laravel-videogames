@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('videogames', function (Blueprint $table) {
-            //
+            $table->foreignId('publisher_id')->nullable()->after('id')->constrained()->nullOnDelete();
         });
     }
 
@@ -22,7 +22,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('videogames', function (Blueprint $table) {
-            //
+            $table->dropForeign('videogames_publisher_id_foreign');
+            $table->dropColumn('publisher_id');
         });
     }
 };

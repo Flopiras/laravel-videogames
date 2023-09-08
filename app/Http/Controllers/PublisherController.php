@@ -50,7 +50,7 @@ class PublisherController extends Controller
      */
     public function edit(Publisher $publisher)
     {
-        //
+        return view('admin.publishers.edit', compact('publisher'));
     }
 
     /**
@@ -58,7 +58,17 @@ class PublisherController extends Controller
      */
     public function update(Request $request, Publisher $publisher)
     {
-        //
+        $data = $request->all();
+        $publisher->update($data);
+
+        return to_route('admin.publishers.show', $publisher)->with('alert-type', 'success')
+            ->with('alert-message', "$publisher->label updated successfully.")
+            ->with('toast', [
+                'owner' => 'System',
+                'message' => 'Updated Successfully',
+                'timestamp' => now(),
+                'action' => ''
+            ]);
     }
 
     /**

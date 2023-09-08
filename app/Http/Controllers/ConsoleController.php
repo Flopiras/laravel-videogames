@@ -94,7 +94,7 @@ class ConsoleController extends Controller
         $console->update($data);
 
         return to_route('admin.consoles.show', $console)->with('alert-type', 'success')
-            ->with('alert-message', "$console->label updated successfully.")
+            ->with('alert-message', "$console->name updated successfully.")
             ->with('toast', [
                 'owner' => 'System',
                 'message' => 'Updated Successfully',
@@ -108,7 +108,18 @@ class ConsoleController extends Controller
      */
     public function destroy(Console $console)
     {
-        //
+        $console->delete();
+
+        return to_route('admin.consoles.index')
+            ->with('alert-type', 'success')
+            ->with('alert-message', "$console->name deleted successfully.")
+            ->with('toast', [
+                'owner' => 'System',
+                'message' => 'Deleted Successfully',
+                'timestamp' => now(),
+                'action' => 'restore',
+                'action-route' => route('admin.consoles.restore', $console)
+            ]);
     }
 
     public function trash()

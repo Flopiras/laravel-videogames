@@ -22,7 +22,12 @@ class ConsoleController extends Controller
      */
     public function create()
     {
-        //
+        $console = new Console();
+
+        // Get all color classes
+        $color_classes = config('color_classes');
+
+        return view('admin.consoles.create', compact('console', 'color_classes'));
     }
 
     /**
@@ -30,7 +35,28 @@ class ConsoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'name' => 'required|string|max:15',
+                'color' => 'required|string|max:15'
+            ]
+        );
+
+        $data = $request->all();
+        $console = new Console();
+        $console->fill($data);
+        $console->save();
+
+        return to_route('admin.consoles.index')
+            ->with('alert-type', 'success')
+            ->with('alert-message', "$console->name created successfully.")
+            ->with('toast', [
+                'owner' => 'System',
+                'message' => 'Created Successfully',
+                'timestamp' => now(),
+                'action' => 'go_to_list',
+                'action-route' => route('admin.consoles.show', $console)
+            ]);
     }
 
     /**

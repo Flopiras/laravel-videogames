@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-end my-4">
 
         {{-- create --}}
-        <a href="#" class="btn btn-success me-4">Create new Console</a>
+        <a href="{{ route('admin.consoles.create') }}" class="btn btn-success me-4">Create new Console</a>
         {{-- trash --}}
         <a href="{{ route('admin.consoles.trash') }}" class="btn btn-danger">Trash</a>
     </div>
@@ -30,12 +30,14 @@
                             {{-- show --}}
                             <a href="{{ route('admin.consoles.show', $console) }}" class="btn btn-primary">Show</a>
                             {{-- edit --}}
-                            <a href="#" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('admin.consoles.edit', $console) }}" class="btn btn-warning">Edit</a>
 
                             {{-- delete --}}
-                            <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="##">
-                                Delete
-                            </button>
+                            <form action="{{ route('admin.consoles.destroy', $console) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger ms-2">Delete</button>
+                            </form>
                         </div>
                     </td>
                 </tr>
